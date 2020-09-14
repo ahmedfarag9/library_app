@@ -5,4 +5,4 @@ class Books(http.Controller):
     def list(self, **kwargs):
         Book = http.request.env['library.book']
         books = Book.search([])
-    return http.request.render('library_app.book_list_template', {'books': books})
+        return http.request.render('library_app.book_list_template', {'books': books})
