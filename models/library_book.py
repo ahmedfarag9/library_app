@@ -22,3 +22,11 @@ class Book(models.Model):
 			check = 10 - remain if remain != 0 else 0
 			return digits[-1] == check
 
+	@api.multi
+	def button_check_isbn(self):
+		for book in self:
+			if not book.isbn:
+				raise Warning('Please provide an ISBN for %s' % book.name)
+			if book.isbn and not book._check_isbn():
+				raise Warning('%s is an invalid ISBN' % book.isbn)
+			return True
